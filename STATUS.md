@@ -1,3 +1,7 @@
+# Documentation rewrite (2026-11-15)
+- Added `docs/README.md` (index + glossary), `ARCHITECTURE.md`, `SERVICES.md`, `API.md`, `DATA_MODEL.md`, `CONFIGURATION.md`, `SAFETY_AND_PRIVACY.md`, `DEVELOPMENT.md`, `OPERATIONS.md`; the root README is now a start-here guide and the old README moved to `docs/DETAILS.md`. Written from reading the code; no test or live run was part of this change, so the counts and "verified" statements are copied from the entries below, not re-measured.
+- Found while documenting: the compose file does not run voice-agent; `.env.example` shows `LLM_MAX_TOKENS=80` while the code default is 250; a local voice worker killed by a LiveKit network drop (FFI panic) is not restarted automatically.
+
 # STATUS (2026-11-15, pre-submission check)
 - Verified today with the project `.venv`: core-api 367, reasoning 1479, voice-agent 445, scheduler 7, Vitest 266, `tsc --noEmit`, Ruff, web build and `eval/run_eval.py` (emergency recall 87/87 on the rules-only set, 0/12 harmless flagged; this set was written alongside the lexicon, so it says nothing about real speech). No live voice session was run. `main` fast-forwarded to `deploy-prep`.
 

@@ -5,7 +5,8 @@
 > It gives no medical advice and keeps stories private by default. A rule-based physical-emergency
 > check (unverified lexicon) tells the user to call 112; it does not detect emergencies by itself.
 >
-> **Partly stale (last full update 2026-10-18).** README.md and STATUS.md are current.
+> **Partly stale (last full update 2026-10-18).** Prefer the current docs: [README.md](README.md), [docs/README.md](docs/README.md)
+> (architecture, services, API, data model, configuration, safety, development, operations) and STATUS.md.
 
 > **Speech integration note (2026-11-07):** the pinned Gnani LiveKit plugin does not expose explicit
 > Prisma v3 model selection or Auto-LID, keyterms, speaker names, previous context, code-mix, and
