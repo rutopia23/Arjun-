@@ -7,6 +7,7 @@ import type { ArjunAction } from "../voice/action";
 import type { ArjunVoice } from "../voice/useArjunVoice";
 import type { MediaControlEvent } from "./MediaScreen";
 import { planAction } from "./media";
+import { t } from "./strings";
 import { isVideoCallStopCommand } from "./videoCall";
 
 /** Performs the agent's "arjun.action" on the elder page, each action exactly once:
@@ -98,7 +99,7 @@ export function useAppActions(voice: ArjunVoice, userId: number, contacts: Conta
       setMedia(null);
       setBlocked(null);
       setVideoCall(null);
-      const name = action.title || "कुटुंब";
+      const name = action.title || t("family_word");
       if (voice.snapshot.phase === "live") void voice.sendText("[video_call_stopped]");
       setVideoCallStarting({ name });
       const attempt = ++callAttempt.current;
@@ -116,7 +117,7 @@ export function useAppActions(voice: ArjunVoice, userId: number, contacts: Conta
         .catch(() => {
           if (attempt !== callAttempt.current) return;
           setVideoCallStarting(null);
-          if (voice.snapshot.phase === "live") void voice.sendText("कॉल लागला नाही, मी पुन्हा प्रयत्न करतो.");
+          if (voice.snapshot.phase === "live") void voice.sendText(t("call_connect_failed"));
         });
       return;
     }

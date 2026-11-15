@@ -9,6 +9,7 @@ import type { Contact } from "../api";
 import type { ControlKind, VideoKind } from "../voice/action";
 import type { ActionAttribute } from "../voice/state";
 import { APPS, appLinks, isAndroid, isAppId } from "./apps";
+import { t } from "./strings";
 
 export type MediaPlan =
   | { do: "embed"; kind: VideoKind; value: string; title: string; canNext: boolean; src: string }
@@ -134,7 +135,7 @@ export function planAction(action: ActionAttribute, contacts: Contact[], origin:
     const command = control(action.command ?? action.kind);
     return command ? { do: "control", command } : { do: "none" };
   }
-  const title = action.title?.trim() || "अर्जुन";
+  const title = action.title?.trim() || t("companion_name");
   const target = youtubeTarget(action);
   if (target) {
     return {

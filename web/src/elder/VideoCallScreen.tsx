@@ -89,7 +89,7 @@ export function VideoCallScreen({
       void api.videoCallStatus(userId, call.id).then((result) => {
         if (!alive) return;
         setStatus(result.status);
-        if (result.status === "missed") missedRef.current(callRef.current?.contact_name ?? "घरच्यांनी");
+        if (result.status === "missed") missedRef.current(callRef.current?.contact_name ?? t("family_word"));
         else if (result.status === "ended") endRef.current("family ended");
       }).catch((error: unknown) => {
         // Keep the call alive during brief mobile network handoffs.

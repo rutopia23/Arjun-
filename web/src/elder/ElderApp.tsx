@@ -829,7 +829,7 @@ export function ElderApp({ userId, forceEvening, showRecorder = false, landOnHom
       )}
       {clonedName && chipScreen && (
         <div className="voice-chip" role="status">
-          <span aria-hidden>♥</span> {voiceChipText(displayLanguage, clonedName)}
+          <span aria-hidden>♥</span> {tr("voice_chip", { name: clonedName }, uiLang)}
         </div>
       )}
       {voice.family && (
@@ -898,10 +898,4 @@ export function ElderApp({ userId, forceEvening, showRecorder = false, landOnHom
       )}
     </div>
   );
-}
-
-function voiceChipText(language: string, name: string): string {
-  if (language === "hi") return `${name} की आवाज़ में बात`;
-  if (language === "mr") return `${name}च्या आवाजात गप्पा`;
-  return `Talking in ${name}'s voice`;
 }

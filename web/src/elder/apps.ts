@@ -14,22 +14,22 @@ const enc = encodeURIComponent;
 
 export const APPS: Record<AppId, AppDef> = {
   spotify: {
-    label: "स्पॉटिफाय",
+    label: "Spotify",
     pkg: "com.spotify.music",
     web: (q) => (q ? `https://open.spotify.com/search/${enc(q)}` : "https://open.spotify.com/"),
   },
   jiosaavn: {
-    label: "जिओसावन",
+    label: "JioSaavn",
     pkg: "com.jio.media.jiobeats",
     web: (q) => (q ? `https://www.jiosaavn.com/search/${enc(q)}` : "https://www.jiosaavn.com/"),
   },
   youtube_music: {
-    label: "यूट्यूब म्युझिक",
+    label: "YouTube Music",
     pkg: "com.google.android.apps.youtube.music",
     web: (q) => (q ? `https://music.youtube.com/search?q=${enc(q)}` : "https://music.youtube.com/"),
   },
   google_maps: {
-    label: "गूगल मॅप्स",
+    label: "Google Maps",
     pkg: "com.google.android.apps.maps",
     web: (q) => (q ? `https://www.google.com/maps/search/${enc(q)}` : "https://www.google.com/maps"),
   },

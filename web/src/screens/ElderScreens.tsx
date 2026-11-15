@@ -22,14 +22,14 @@ export function setReplyLang(lang: string | undefined): void {
   replyLangTag = (lang ?? "").trim();
 }
 
-let companionLabel = "अर्जुन";
-export const getCompanionLabel = (): string => companionLabel;
+let companionName = "";
+export const getCompanionLabel = (): string => companionName || t("companion_name");
 export function setCompanionLabel(name: string | undefined): void {
   const n = (name ?? "").trim();
-  companionLabel = !n || n.toLowerCase() === "arjun" ? "अर्जुन" : n;
+  companionName = !n || n.toLowerCase() === "arjun" ? "" : n;
 }
 
-const aiDisclosure = (): string => t("ai_disclosure", { name: companionLabel });
+const aiDisclosure = (): string => t("ai_disclosure", { name: getCompanionLabel() });
 
 export interface UpcomingItem {
   key: string;
@@ -191,7 +191,7 @@ export function HomeScreen(p: HomeProps) {
 
         {!p.hideSpeak && (
         <div className="home-speak">
-          <button className="speak-orb" onClick={p.onSpeak} disabled={p.busy} aria-label={t("talk_to", { name: companionLabel })}>
+          <button className="speak-orb" onClick={p.onSpeak} disabled={p.busy} aria-label={t("talk_to", { name: getCompanionLabel() })}>
             <span className="orb-phone">
               <WarmOrb size="lg" pulse>
                 <Mic size={44} />
@@ -200,7 +200,7 @@ export function HomeScreen(p: HomeProps) {
             <span className="orb-laptop">
               <div className="lap-rings">
                 <div className="lap-mid">
-                  <Orb state="idle" label={companionLabel} size="8.75rem" />
+                  <Orb state="idle" label={getCompanionLabel()} size="8.75rem" />
                 </div>
               </div>
             </span>
@@ -274,8 +274,8 @@ export function ListenScreen(p: {
         <h1 className="h1">{t("listening_h")}</h1>
       </div>
       <div className="orb-wrap" data-orb={state}>
-        <WarmOrb size="lg" pulse label={t("listening_aria", { name: companionLabel })} />
-        <span className="orb-caption">{t("listening_cap", { name: companionLabel })}</span>
+        <WarmOrb size="lg" pulse label={t("listening_aria", { name: getCompanionLabel() })} />
+        <span className="orb-caption">{t("listening_cap", { name: getCompanionLabel() })}</span>
       </div>
       {p.thread ? (
         <ChatThread messages={p.thread} live={p.heard} />
@@ -393,7 +393,7 @@ export function ReplyScreen(p: {
     <div className="screen">
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <WarmOrb size="md" />
-        <h1 className="h2">{companionLabel}</h1>
+        <h1 className="h2">{getCompanionLabel()}</h1>
       </div>
       {p.thread && p.thread.length > 0 ? (
         <ChatThread messages={p.thread} />
@@ -684,8 +684,8 @@ export function StartScreen(p: { onStart: () => void; hideStart?: boolean }) {
   return (
     <div className="screen centered">
       <div className="center-block">
-        <WarmOrb size="lg" pulse label={companionLabel} />
-        <h1 className="h1">{t("start_hello", { name: companionLabel })}</h1>
+        <WarmOrb size="lg" pulse label={getCompanionLabel()} />
+        <h1 className="h1">{t("start_hello", { name: getCompanionLabel() })}</h1>
         <p className="lead">{t("lets_chat")}</p>
       </div>
       {!p.hideStart && <button className="btn primary big" onClick={p.onStart}>

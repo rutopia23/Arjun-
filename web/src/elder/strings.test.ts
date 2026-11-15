@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { dateLine, dayWord, periodOfDay, spokenTime, timeLabel, weekday } from "./format";
 import { elderLanguage, orbLabel, timeGreeting } from "./i18n";
 import { ALL_STRING_KEYS, ELDER_LANGUAGES, LANGUAGE_NAMES, getElderLang, setElderLang, t, uiLanguage } from "./strings";
+import { getCompanionLabel, setCompanionLabel } from "../screens/ElderScreens";
 
 afterEach(() => setElderLang("mr"));
 
@@ -40,6 +41,18 @@ describe("elder strings: all ten Gnani languages", () => {
     }
     expect(t("tap_and_speak", undefined, "mr")).toBe("बोलण्यासाठी बटण दाबा");
     expect(t("tap_and_speak", undefined, "en")).toBe("Press the button to talk");
+  });
+
+  it("uses the selected language for the default companion name and voice label", () => {
+    setCompanionLabel(undefined);
+    for (const lang of ELDER_LANGUAGES) {
+      setElderLang(lang);
+      expect(getCompanionLabel()).toBe(t("companion_name", undefined, lang));
+      expect(t("voice_chip", { name: "Maya" }, lang)).toContain("Maya");
+    }
+    setCompanionLabel("Maya");
+    expect(getCompanionLabel()).toBe("Maya");
+    setCompanionLabel(undefined);
   });
 
   it("keeps the original Marathi wording", () => {
