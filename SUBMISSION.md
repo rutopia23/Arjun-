@@ -65,5 +65,7 @@ speaking. Family sees summaries, never her words, and mood only with "share how 
 
 ## Links
 - Demo video: [link]
-- LinkedIn post: [link] · X post: [link]
+- LinkedIn demo post: https://www.linkedin.com/posts/atharva-pawar-73451232a_gnaniai-greatindianaiinternshipchallenge-ugcPost-7527707328884834304-gJJI
+- LinkedIn ad post: https://www.linkedin.com/posts/rutuja-patole-545502333_gnaniai-greatindianaiinternshipchallenge-ugcPost-7524921053089984513-0k4Z
+- X demo post: https://x.com/AtharvaPaw25/status/2121941776990879967
 - Repository: https://github.com/atharva-glitch10/Arjun-

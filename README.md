@@ -19,6 +19,18 @@ All demo data is synthetic. Never put real phone numbers, Aadhaar/PAN or recorde
 
 ---
 
+## Demo and social posts
+
+Public posts for the Gnani AI "Great Indian AI Internship Challenge" (#GnaniAI #GreatIndianAIInternshipChallenge):
+
+| Post | Link |
+|---|---|
+| LinkedIn: demo post | https://www.linkedin.com/posts/atharva-pawar-73451232a_gnaniai-greatindianaiinternshipchallenge-ugcPost-7527707328884834304-gJJI |
+| LinkedIn: ad post | https://www.linkedin.com/posts/rutuja-patole-545502333_gnaniai-greatindianaiinternshipchallenge-ugcPost-7524921053089984513-0k4Z |
+| X: demo post | https://x.com/AtharvaPaw25/status/2121941776990879967 |
+
+Repository: https://github.com/atharva-glitch10/Arjun- · One-page pitch: [PITCH.md](PITCH.md) · Project on one page: [PROJECT_EXPLAINED.md](PROJECT_EXPLAINED.md)
+
 ## Contents
 1. [How it works](#how-it-works)
 2. [Repository layout](#repository-layout)
