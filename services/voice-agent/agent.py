@@ -386,8 +386,25 @@ async def _probe_tts_with_retry(tts_obj, model: str) -> bool:
     return worked
 
 
+# The page gives up on the agent 20 s after joining (web READY_TIMEOUT_MS). Probe (8 s) + retry wait (5 s) + probe (8 s) +
+# fallback probe (8 s) could hold the session closed for ~29 s while Timbre returned no audio (2026-11-15: the page showed
+# "Arjun is not ready yet" with a healthy, registered worker). Start the session within this budget no matter what.
+TTS_START_BUDGET_S = float(os.environ.get("ARJUN_TTS_START_BUDGET_S", "9"))
+
+
 async def working_tts():  # type: ignore[no-untyped-def]
-    """(tts, model) for this session: the configured Timbre if a one-word probe works, else the verified one."""
+    """(tts, model) for this session, ready within TTS_START_BUDGET_S: the probed choice, else the verified fallback unprobed."""
+    try:
+        return await asyncio.wait_for(_working_tts_probed(), timeout=TTS_START_BUDGET_S)
+    except TimeoutError:
+        language = _tts_prewarm_language()
+        logger.warning("TTS probe did not finish in %.0f s; starting the session on %s now (the probe is not cached, so the next session tries again)",
+                       TTS_START_BUDGET_S, TTS["fallback_model"])
+        return make_tts(TTS["fallback_model"], TTS["fallback_voice"], language), TTS["fallback_model"]
+
+
+async def _working_tts_probed():  # type: ignore[no-untyped-def]
+    """The configured Timbre if a one-word probe works, else the verified one (can take longer than the page waits)."""
     language = _tts_prewarm_language()
     loop = asyncio.get_running_loop()
     primary_key = (loop, TTS_MODEL, TTS_VOICE, language)

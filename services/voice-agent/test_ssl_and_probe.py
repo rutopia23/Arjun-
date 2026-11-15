@@ -102,3 +102,40 @@ def test_a_non_timeout_probe_failure_does_not_retry(monkeypatch, voice_agent):
     tts = FailedTTS()
     assert asyncio.run(voice_agent._probe_tts_with_retry(tts, "timbre-v3.0")) is False
     assert tts.calls == 1
+
+
+def test_a_hung_timbre_probe_cannot_hold_the_session_past_the_start_budget(monkeypatch, voice_agent):
+    """Regression 2026-11-15: probe + 5 s retry + probe + fallback probe could take ~29 s, longer than the page's 20 s,
+    so the elder page showed "Arjun is not ready yet" although the worker was registered and had the job."""
+    monkeypatch.setattr(voice_agent, "TTS_START_BUDGET_S", 0.2)
+    fallback = ProbeTTS(failures=0)
+
+    class HungTTS:
+        def synthesize(self, _text):
+            class Stream:
+                async def collect(_self):
+                    await asyncio.sleep(30)  # Timbre accepts the request and never returns audio
+
+            return Stream()
+
+    def make_tts(model, _voice, _language=None):
+        return fallback if model == voice_agent.TTS["fallback_model"] and model != voice_agent.TTS_MODEL else HungTTS()
+
+    monkeypatch.setattr(voice_agent, "make_tts", make_tts)
+    monkeypatch.setitem(voice_agent.TTS, "fallback_model", "timbre-v2.5")
+    monkeypatch.setattr(voice_agent, "TTS_MODEL", "timbre-v3.0")
+    voice_agent._PROBED.clear()
+
+    started = asyncio.run(asyncio.wait_for(_timed(voice_agent), timeout=5))
+    tts, model, seconds = started
+    assert tts is fallback and model == "timbre-v2.5"
+    assert seconds < 2  # the budget, not the 8 + 5 + 8 s probe chain
+    assert not voice_agent._PROBED  # nothing cached from the abandoned probe: the next session tries Timbre v3 again
+
+
+async def _timed(voice_agent):
+    import time
+
+    t0 = time.monotonic()
+    tts, model = await voice_agent.working_tts()
+    return tts, model, time.monotonic() - t0
