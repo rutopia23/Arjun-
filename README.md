@@ -1,6 +1,6 @@
 # Arjun - a voice care companion for elderly Indians
 
-**One-page pitch: [PITCH.md](PITCH.md)** · **Documentation index: [docs/README.md](docs/README.md)** · Spec: [CLAUDE.md](CLAUDE.md)
+**One-page pitch: [PITCH.md](PITCH.md)** · **Project on one page: [PROJECT_EXPLAINED.md](PROJECT_EXPLAINED.md)** · **Documentation index: [docs/README.md](docs/README.md)** · Spec: [CLAUDE.md](CLAUDE.md)
 
 Arjun is a voice companion that helps elderly Indians (Marathi, code-mixed, Hindi, English) manage their day and
 share life stories just by talking. It has two halves:
