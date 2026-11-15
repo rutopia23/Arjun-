@@ -1,6 +1,7 @@
 import logging
 import os
 import threading
+import time as _time
 from contextlib import asynccontextmanager
 from datetime import date, datetime, time, timedelta
 from typing import Literal
@@ -47,6 +48,12 @@ from .wellbeing import router as wellbeing_router
 def _log_base_url_status() -> None:
     """One startup line: BASE_URL ok / unreachable / quick-tunnel (no secrets). Off the request path: the probe can take 3 s."""
     line = baseurl.status_line()
+    for _ in range(6):  # web (Vite) starts after core-api: the Funnel answers 502 until it is up, so retry before warning
+        if not line.startswith("BASE_URL unreachable") or "HTTP 5" not in line:
+            break
+        _time.sleep(5)
+        baseurl.reset()
+        line = baseurl.status_line()
     (logging.getLogger("uvicorn.error").info if line.startswith("BASE_URL ok") else logging.getLogger("uvicorn.error").warning)(line)
     print(line, flush=True)
 

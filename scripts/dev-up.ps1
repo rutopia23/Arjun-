@@ -256,14 +256,19 @@ function Show-BaseUrlStatus {
     if ($url -match "^https://([^/]+\.)?trycloudflare\.com" -and (Get-Setting "ARJUN_ALLOW_QUICK_TUNNEL") -ne "1") {
         Write-Warning "BASE_URL quick-tunnel: $url (core-api refuses quick-tunnel links unless ARJUN_ALLOW_QUICK_TUNNEL=1). $hint"; return
     }
-    try {
-        $r = Invoke-WebRequest -Uri "$url/" -UseBasicParsing -TimeoutSec 3
-        Write-Host "BASE_URL ok: $url (HTTP $($r.StatusCode))" -ForegroundColor Green
-    } catch {
-        $code = $null; if ($_.Exception.Response) { $code = [int]$_.Exception.Response.StatusCode }
-        if ($code -and $code -lt 500) { Write-Host "BASE_URL ok: $url (HTTP $code)" -ForegroundColor Green }
-        else { Write-Warning "BASE_URL unreachable: $url. Telegram alerts will go out WITHOUT a join button. $hint" }
+    # The Funnel answers 502 until web (:5173) is listening, which is a few seconds after start: retry for ~30 s.
+    $ok = $false; $code = $null
+    for ($i = 0; $i -lt 10 -and -not $ok; $i++) {
+        try {
+            $r = Invoke-WebRequest -Uri "$url/" -UseBasicParsing -TimeoutSec 3
+            $code = [int]$r.StatusCode
+        } catch {
+            $code = $null; if ($_.Exception.Response) { $code = [int]$_.Exception.Response.StatusCode }
+        }
+        if ($code -and $code -lt 500) { $ok = $true } else { Start-Sleep -Seconds 3 }
     }
+    if ($ok) { Write-Host "BASE_URL ok: $url (HTTP $code)" -ForegroundColor Green }
+    else { Write-Warning "BASE_URL unreachable: $url (last HTTP $code). Telegram alerts will go out WITHOUT a join button. Is the web server up on :5173 and 'tailscale funnel status' on? $hint" }
 }
 Show-BaseUrlStatus
 
