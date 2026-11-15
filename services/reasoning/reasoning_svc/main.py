@@ -9,6 +9,7 @@ from .appcmd import MEDIA_CONTROL, parse_app_command
 from .core_client import CoreClient, CoreError
 from .distress import is_distress, is_emergency
 from .evon import EvonClient, Limiter, debug_log, llm_debug_enabled
+from .prodcheck import check_prod_env
 from .ratelimit import TokenBucket
 from .stream import serve as _serve_stream
 from .textutil import collapse_repeats
@@ -31,6 +32,7 @@ def configure_logging() -> None:
 
 
 configure_logging()
+check_prod_env()  # ENV=prod only
 app = FastAPI(title="Arjun reasoning")
 
 _engine: TurnEngine | None = None

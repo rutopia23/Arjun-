@@ -6,6 +6,7 @@ from datetime import date, datetime, time, timedelta
 from typing import Literal
 
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
@@ -33,6 +34,7 @@ from .media import router as media_router
 from .medicines import mark_snoozed, mark_taken, open_dose
 from .medicines import router as medicines_router
 from .origin_guard import origin_brake
+from .prodcheck import check_prod_env
 from .ratelimit import RateLimitMiddleware
 from .readings import router as readings_router
 from .recurrence import next_occurrence
@@ -52,6 +54,7 @@ def _log_base_url_status() -> None:
 @asynccontextmanager
 async def lifespan(_: FastAPI):  # type: ignore[no-untyped-def]
     check_api_key_configured()  # refuse to start with auth silently disabled
+    check_prod_env()  # ENV=prod only: refuse a half-configured deployment
     if not os.environ.get("ARJUN_TESTING"):
         threading.Thread(target=_log_base_url_status, name="base-url-check", daemon=True).start()
     for change in reconcile_schema(engine, Base.metadata):  # old databases: add / set aside, never drop
@@ -64,6 +67,12 @@ async def lifespan(_: FastAPI):  # type: ignore[no-untyped-def]
 app = FastAPI(title="Arjun core-api", lifespan=lifespan)
 app.middleware("http")(origin_brake)  # cross-site POST with a session cookie -> 403 (origin_guard.py)
 app.add_middleware(RateLimitMiddleware)
+_cors = [o.strip() for o in os.environ.get("CORS_ALLOW_ORIGINS", "").split(",") if o.strip() and o.strip() != "*"]
+if _cors:  # only the listed origins (the Vercel site); unset = no CORS headers, as before
+    app.add_middleware(
+        CORSMiddleware, allow_origins=_cors, allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"], allow_headers=["Content-Type", "X-API-Key"],
+    )
 router = APIRouter(dependencies=[Depends(require_key)])
 
 

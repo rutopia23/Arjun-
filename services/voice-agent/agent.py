@@ -159,6 +159,9 @@ def load_agent_env(env_file: Path | None = None) -> None:
         sys.exit(f"voice-agent: missing required environment variables: {', '.join(missing)} (set them in {path})")
 
 
+from prodcheck import check_prod_env  # noqa: E402
+
+check_prod_env()  # ENV=prod only
 load_agent_env()  # job subprocesses re-import this module; they inherit the already-set env
 applog.setup_file_log()  # logs/voice-agent.app.log, written from inside this process (see applog.py)
 
