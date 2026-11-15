@@ -1,0 +1,2120 @@
+{
+ "label": "after",
+ "when": "2026-11-10T16:07:58",
+ "llm": "gemini/gemini-flash-lite-latest",
+ "temperature": 0.4,
+ "rows": [
+  {
+   "id": "c01",
+   "cat": "follow_up",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी बागेत तुळस लावली"
+    ],
+    [
+     "a",
+     "बागेत तुळस लावली म्हणजे खूपच छान काम केलं; तुळशीमुळे घर आणि बाग दोन्ही पवित्र वाटतात."
+    ],
+    [
+     "s",
+     "तिला रोज पाणी घालायचं का"
+    ],
+    [
+     "a",
+     "होय, तुळशीला रोज थोडं पाणी घालायलाच पाहिजे."
+    ]
+   ],
+   "criterion": "Answers about watering the tulsi she just planted, in context.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly answers whether to water the newly planted tulsi daily."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    5215,
+    4654
+   ],
+   "last_ms": 4654,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c02",
+   "cat": "follow_up",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "काल आमच्याकडे पाहुणे आले होते"
+    ],
+    [
+     "a",
+     "पाहुणे आले होते म्हणजे नक्कीच छान मज्जा आली असणार, कोण कोण आलं होतं?"
+    ],
+    [
+     "s",
+     "त्यांच्यासाठी मी पुरणपोळी केली"
+    ],
+    [
+     "a",
+     "पुरणपोळी ऐकूनच तोंडाला पाणी सुटलं Aajiबाई, पाहुण्यांना ती नक्कीच खूप आवडली असणार!"
+    ],
+    [
+     "s",
+     "सगळ्यांना खूप आवडली"
+    ],
+    [
+     "a",
+     "खरंच, सगळ्यांनी आवडीने खाल्ली असणार! त्यांच्यासोबत आणखी काय काय गप्पा झाल्या?"
+    ]
+   ],
+   "criterion": "Warm reaction to the guests liking her puran poli; no new topic.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Warmly acknowledges the guests liking her puran poli without starting a new topic."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    1601,
+    1812,
+    2157
+   ],
+   "last_ms": 2157,
+   "relevance": {
+    "checked": 3,
+    "cheap_pass": 3,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c03",
+   "cat": "follow_up",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "आज मौसम बहुत अच्छा है"
+    ],
+    [
+     "a",
+     "मौसम सचमुच बहुत सुहाना है आजीबाई, इस ठंडी हवा में चाय पीने का मज़ा ही कुछ और है।"
+    ],
+    [
+     "s",
+     "मैं बगीचे में बैठी थी"
+    ],
+    [
+     "a",
+     "बगीचे में हवा बहुत अच्छी लग रही होगी आजीबाई, वहाँ कौन-कौन से फूल खिले हैं?"
+    ],
+    [
+     "s",
+     "फूल बहुत खिले हैं"
+    ],
+    [
+     "a",
+     "बगीचे में रंग-बिरंगे फूल खिले होंगे आजीबाई, वहाँ बैठने से मन एकदम प्रसन्न हो जाता है।"
+    ]
+   ],
+   "criterion": "Responds about the flowers blooming in the garden.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly responds about the blooming flowers in the garden."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    3348,
+    1591,
+    1524
+   ],
+   "last_ms": 1524,
+   "relevance": {
+    "checked": 3,
+    "cheap_pass": 3,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c04",
+   "cat": "follow_up",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I made tea this morning"
+    ],
+    [
+     "a",
+     "That sounds nice, Aaji. What did you have with your tea this morning?"
+    ],
+    [
+     "s",
+     "My granddaughter likes it with ginger"
+    ],
+    [
+     "a",
+     "Ginger tea is so refreshing, Aaji."
+    ]
+   ],
+   "criterion": "Responds about ginger tea or the granddaughter liking it.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Appropriately responds to her mention of ginger tea."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    3078,
+    3315
+   ],
+   "last_ms": 3315,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c05",
+   "cat": "follow_up",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "मी आज सकाळी फिरायला गेले"
+    ],
+    [
+     "a",
+     "आज सकाळी फिरायला गेलात! हवा कशी होती तिकडे?"
+    ],
+    [
+     "s",
+     "वाटेत एक जुनी मैत्रीण भेटली"
+    ],
+    [
+     "a",
+     "जुनी मैत्रीण भेटली म्हणजे जुन्या आठवणींना उजाळा मिळाला असेल!"
+    ],
+    [
+     "s",
+     "तिचं नाव सुमन"
+    ],
+    [
+     "a",
+     "सुमनताई भेटल्या तर जुन्या गोष्टी करायला खूप मजा आली असेल."
+    ]
+   ],
+   "criterion": "Reacts to meeting her old friend Suman; gives no health or exercise advice.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Reacts naturally to meeting Suman without giving any advice."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    1260,
+    1595,
+    1697
+   ],
+   "last_ms": 1697,
+   "relevance": {
+    "checked": 3,
+    "cheap_pass": 3,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c06",
+   "cat": "yes_no",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "a",
+     "आज तुमच्यासाठी भजन लावू का?"
+    ],
+    [
+     "s",
+     "हो"
+    ],
+    [
+     "a",
+     "मी काय नोंदवू? कृपया पुन्हा सांगा."
+    ]
+   ],
+   "criterion": "Agrees to play bhajan (says it will play / plays it); about bhajan only.",
+   "judge": {
+    "answered": 0,
+    "on_topic": false,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "judge failed"
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    474
+   ],
+   "last_ms": 474,
+   "relevance": {
+    "checked": 0,
+    "cheap_pass": 0,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c07",
+   "cat": "yes_no",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "a",
+     "आज कोणाला फोन करायचा आहे का?"
+    ],
+    [
+     "s",
+     "नाही"
+    ],
+    [
+     "a",
+     "ठीक आहे. नंतर कधीतरी बोलू."
+    ]
+   ],
+   "criterion": "Accepts the no calmly and briefly; does not push or change subject to something unrelated.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Calmly accepts her 'no' and ends the conversation politely."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    1522
+   ],
+   "last_ms": 1522,
+   "relevance": {
+    "checked": 0,
+    "cheap_pass": 0,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c08",
+   "cat": "yes_no",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "a",
+     "तुम्ही जेवण केलं का?"
+    ],
+    [
+     "s",
+     "हो"
+    ],
+    [
+     "a",
+     "मी काय नोंदवू? कृपया पुन्हा सांगा."
+    ],
+    [
+     "s",
+     "खिचडी केली होती"
+    ],
+    [
+     "a",
+     "खिचडी छान होऊन गेली असेल, ती कशाबोरबर खाली Aajiबाई?"
+    ]
+   ],
+   "criterion": "Reacts to her having eaten khichdi.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Reacts naturally to her eating khichdi by asking what she had it with."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    2990,
+    3123
+   ],
+   "last_ms": 3123,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 1,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c09",
+   "cat": "yes_no",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "a",
+     "क्या आज आपने सैर की?"
+    ],
+    [
+     "s",
+     "नहीं, आज धूप बहुत थी"
+    ],
+    [
+     "a",
+     "ऊन जास्त असेल तर बाहेर जाणं योग्य नाही; मग घरातच काही हलका व्यायाम केला का आजीबाई?"
+    ]
+   ],
+   "criterion": "Understands she did not go for a walk because the sun was strong; replies about that.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Understands the hot sun reason and asks about indoor exercise."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    3556
+   ],
+   "last_ms": 3556,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 0,
+    "llm_checks": 1,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c10",
+   "cat": "yes_no",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "a",
+     "आर्यनचा आज वाढदिवस आहे ना?"
+    ],
+    [
+     "s",
+     "हो"
+    ],
+    [
+     "a",
+     "मी काय नोंदवू? कृपया पुन्हा सांगा."
+    ],
+    [
+     "s",
+     "त्याला फोन करायचा आहे"
+    ],
+    [
+     "a",
+     "माझ्याकडे कोणाचाही नंबर नोंदवलेला नाही. तुमच्या काळजीवाहकांना तो जोडायला सांगा."
+    ]
+   ],
+   "criterion": "Supports calling Aryan; does not ask who 'he' is.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly addresses calling Aryan by mentioning the missing contact number."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    1288,
+    1282
+   ],
+   "last_ms": 1282,
+   "relevance": {
+    "checked": 0,
+    "cheap_pass": 0,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c11",
+   "cat": "yes_no",
+   "lang": "en",
+   "dialogue": [
+    [
+     "a",
+     "Shall I tell you a short story?"
+    ],
+    [
+     "s",
+     "yes please"
+    ],
+    [
+     "a",
+     "What should I save? Please tell me again."
+    ]
+   ],
+   "criterion": "Starts or promises a short story (she said yes to the offer).",
+   "judge": {
+    "answered": 1,
+    "on_topic": false,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "Asked to save something instead of telling the promised story."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    4620
+   ],
+   "last_ms": 4620,
+   "relevance": {
+    "checked": 0,
+    "cheap_pass": 0,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c12",
+   "cat": "pronoun",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझी नात प्रिया आज येणार आहे"
+    ],
+    [
+     "a",
+     "छान, आज तुमची नात प्रिया भेटायला येणार आहे."
+    ],
+    [
+     "s",
+     "तिला मी लाडू देणार आहे"
+    ],
+    [
+     "a",
+     "तिला लाडू खूप आवडतात; तुम्ही तिच्यासाठी छान लाडू करून ठेवले आहेत."
+    ]
+   ],
+   "criterion": "Refers to Priya / the granddaughter and the laddus.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly refers to Priya and the laddus from prior turns."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    1375,
+    2890
+   ],
+   "last_ms": 2890,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c13",
+   "cat": "pronoun",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझा मुलगा रमेश मुंबईत असतो"
+    ],
+    [
+     "a",
+     "रमेश मुंबईत असतात; ते तिथे कामात असतील ना?"
+    ],
+    [
+     "s",
+     "तो दर रविवारी फोन करतो"
+    ],
+    [
+     "a",
+     "ते दर रविवारी न चुकता फोन करत असतील."
+    ],
+    [
+     "s",
+     "त्याचा आवाज ऐकून बरं वाटतं"
+    ],
+    [
+     "a",
+     "त्याचा आवाज ऐकल्यावर नक्कीच खूप आनंद होत असेल."
+    ]
+   ],
+   "criterion": "Warm reply tied to her son Ramesh's Sunday calls.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Warmly acknowledges her happiness upon hearing her son's voice."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    1790,
+    4711,
+    1512
+   ],
+   "last_ms": 1512,
+   "relevance": {
+    "checked": 3,
+    "cheap_pass": 3,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c14",
+   "cat": "pronoun",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "मेरी बहू सीमा बहुत अच्छा खाना बनाती है"
+    ],
+    [
+     "a",
+     "सीमा जी बहुत अच्छा खाना बनाती हैं; आज उन्होंने खाने में क्या बनाया है आजीबाई?"
+    ],
+    [
+     "s",
+     "उसने आज कढ़ी बनाई"
+    ],
+    [
+     "a",
+     "कढ़ी तो बहुत स्वादिष्ट बनी होगी!"
+    ]
+   ],
+   "criterion": "About Seema (the daughter-in-law) making kadhi.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges the kadhi made by Seema."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    3938,
+    4925
+   ],
+   "last_ms": 4925,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c15",
+   "cat": "pronoun",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "My husband loved gardening"
+    ],
+    [
+     "a",
+     "That is so wonderful, Aajiमाऊ, what kind of plants did he love growing the most?"
+    ],
+    [
+     "s",
+     "He planted that mango tree"
+    ],
+    [
+     "a",
+     "That mango tree must give the sweetest fruit every year, Aajiबाई."
+    ],
+    [
+     "s",
+     "I water it every day"
+    ],
+    [
+     "a",
+     "That is so dedicated of you, Aajiबाई, does it give plenty of mangoes in the summer?"
+    ]
+   ],
+   "criterion": "About the mango tree her husband planted and her watering it.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges her watering the mango tree and asks about the yield."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    6007,
+    1379,
+    1608
+   ],
+   "last_ms": 1608,
+   "relevance": {
+    "checked": 3,
+    "cheap_pass": 3,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c16",
+   "cat": "pronoun",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आमच्या शेजारच्या कमलताई आज येऊन गेल्या"
+    ],
+    [
+     "a",
+     "कमलताई भेटायला आल्या होत्या; त्यांच्याशी काय गप्पा झाल्या?"
+    ],
+    [
+     "s",
+     "त्यांनी मला बांगड्या दिल्या"
+    ],
+    [
+     "a",
+     "त्यांनी तुम्हाला छान बांगड्या दिल्या!"
+    ]
+   ],
+   "criterion": "About Kamaltai giving her bangles.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Acknowledged Kamaltai giving her bangles naturally."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    11322,
+    1385
+   ],
+   "last_ms": 1385,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c17",
+   "cat": "pronoun",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझा नातू आर्यन क्रिकेट खेळतो"
+    ],
+    [
+     "a",
+     "आर्यन चांगला क्रिकॅट खेळतो; त्याला खेळणायक की फलंदाजी जास्त आवडते?"
+    ],
+    [
+     "s",
+     "त्याला आज बक्षीस मिळालं"
+    ],
+    [
+     "a",
+     "खूपच छान!"
+    ]
+   ],
+   "criterion": "Congratulates (Aryan) on the prize.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Congratulates Aryan appropriately on the prize."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    3311,
+    1973
+   ],
+   "last_ms": 1973,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c18",
+   "cat": "topic_change",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी भाजी आणली"
+    ],
+    [
+     "a",
+     "भाजी आणलीत, छान! आज कोणती भाजी आणली आहे?"
+    ],
+    [
+     "s",
+     "आता मला गाणं ऐकायचं आहे"
+    ],
+    [
+     "a",
+     "यूट्यूबवर शोधलं आहे. हवा असलेला व्हिडिओ दाबा."
+    ]
+   ],
+   "criterion": "Follows her to songs (asks which / offers); not about vegetables.",
+   "judge": {
+    "answered": 3,
+    "on_topic": true,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "Switched to songs as requested, but gave a robotic YouTube instruction."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    1654,
+    2648
+   ],
+   "last_ms": 2648,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 1,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c19",
+   "cat": "topic_change",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझा नातू आज आला"
+    ],
+    [
+     "a",
+     "आर्यन आला आहे! तो आल्यावर तुम्हाला नक्कीच खूप आनंद झाला असेल."
+    ],
+    [
+     "s",
+     "चला, आता देवाला नमस्कार करते"
+    ],
+    [
+     "a",
+     "नक्कीच, देवाला नमस्कार करा."
+    ]
+   ],
+   "criterion": "Follows her to her prayer / worship.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Arjun naturally supports her decision to pray."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    1797,
+    1227
+   ],
+   "last_ms": 1227,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c20",
+   "cat": "topic_change",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "आज बहुत गर्मी है"
+    ],
+    [
+     "a",
+     "हाँ, बताइए, मैं सुन रहा हूँ।"
+    ],
+    [
+     "s",
+     "अच्छा छोड़ो, मुझे पुरानी फिल्मों के बारे में बताओ"
+    ],
+    [
+     "a",
+     "जुन्या सिनेमांच्या गाण्यांत एक वेगळीच जादू होती, तुम्हाला कोणतं गाणं ऐकायला आवडेल?"
+    ]
+   ],
+   "criterion": "Moves to old films.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Moves to old films and asks about her favorite song."
+   },
+   "keyword_hit": false,
+   "generic_turns": 1,
+   "turn_ms": [
+    10341,
+    3760
+   ],
+   "last_ms": 3760,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 2,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c21",
+   "cat": "topic_change",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I went to the temple today"
+    ],
+    [
+     "a",
+     "Visiting the temple sounds very peaceful, Aajiबाई; which temple did you go to?"
+    ],
+    [
+     "s",
+     "Never mind that, tell me something about the moon"
+    ],
+    [
+     "a",
+     "“Never mind that tell me something” - what exactly do you mean, could you tell me a little more?"
+    ]
+   ],
+   "criterion": "Talks about the moon.",
+   "judge": {
+    "answered": 1,
+    "on_topic": false,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "Ignores her request about the moon and asks for clarification instead."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    4444,
+    7474
+   ],
+   "last_ms": 7474,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 2,
+    "llm_no": 2,
+    "retried": 1,
+    "clarified": 1
+   }
+  },
+  {
+   "id": "c22",
+   "cat": "topic_change",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "मला आज स्वयंपाक करायचा आहे"
+    ],
+    [
+     "a",
+     "हं, सांगा ना, मी ऐकतोय."
+    ],
+    [
+     "s",
+     "नको, आधी माझ्या नातीची गोष्ट सांगते"
+    ],
+    [
+     "a",
+     "बरं. मग पुढे काय झालं?"
+    ],
+    [
+     "s",
+     "तिचं नाव मीरा"
+    ],
+    [
+     "a",
+     "अरे वा! जरा अजून सांगा."
+    ]
+   ],
+   "criterion": "Listens to the story of granddaughter Meera.",
+   "judge": {
+    "answered": 0,
+    "on_topic": false,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "judge failed"
+   },
+   "keyword_hit": false,
+   "generic_turns": 3,
+   "turn_ms": [
+    2909,
+    4109,
+    4093
+   ],
+   "last_ms": 4093,
+   "relevance": {
+    "checked": 0,
+    "cheap_pass": 0,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c23",
+   "cat": "ambiguous",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी घरीच आहे"
+    ],
+    [
+     "a",
+     "आज घरातच आहात, मग छान आरामशीर दिवस असेल तुमचा."
+    ],
+    [
+     "s",
+     "तेच दे"
+    ],
+    [
+     "a",
+     "ते काय आहे ते सांगाल का Aajiबाई?"
+    ]
+   ],
+   "criterion": "Asks ONE short clarifying question quoting her words (what is 'तेच'); does not guess.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly asks a clarifying question quoting 'तेच'."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    3520,
+    3192
+   ],
+   "last_ms": 3192,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 2,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c24",
+   "cat": "ambiguous",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी घरीच आहे"
+    ],
+    [
+     "a",
+     "आज घरातच आहात तर छान आरामात वेळ जाईल."
+    ],
+    [
+     "s",
+     "त्याला सांग"
+    ],
+    [
+     "a",
+     "कोणाला सांगायचं आहे Aajiबाई, कुणाबद्दल बोलताय?"
+    ]
+   ],
+   "criterion": "Asks ONE short question: whom / what to tell; does not guess.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Asks who to tell without guessing."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    2093,
+    2114
+   ],
+   "last_ms": 2114,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 1,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c25",
+   "cat": "ambiguous",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "आज मैं घर पर हूँ"
+    ],
+    [
+     "a",
+     "हाँ, बताइए, मैं सुन रहा हूँ।"
+    ],
+    [
+     "s",
+     "वो वाला चला दो"
+    ],
+    [
+     "a",
+     "यूट्यूब पर खोज लिया है। जो वीडियो चाहिए उसे दबाइए।"
+    ]
+   ],
+   "criterion": "Asks ONE short question: which one; does not guess.",
+   "judge": {
+    "answered": 1,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Arjun did not ask which one; he guessed by opening YouTube."
+   },
+   "keyword_hit": null,
+   "generic_turns": 1,
+   "turn_ms": [
+    5204,
+    1411
+   ],
+   "last_ms": 1411,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 1,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c26",
+   "cat": "ambiguous",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I am at home today"
+    ],
+    [
+     "a",
+     "It is nice to stay comfortably at home today, Aajiबाई."
+    ],
+    [
+     "s",
+     "Do that again"
+    ],
+    [
+     "a",
+     "I am undoing that right now, Aajiबाई."
+    ]
+   ],
+   "criterion": "Asks what should be repeated; does not guess.",
+   "judge": {
+    "answered": 1,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Failed to ask what should be repeated and guessed instead."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    2620,
+    5065
+   ],
+   "last_ms": 5065,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c27",
+   "cat": "ambiguous",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी घरीच आहे"
+    ],
+    [
+     "a",
+     "आज तुम्ही घरीच आहात, आरामात दिवस जात असेल तुमचा."
+    ],
+    [
+     "s",
+     "आज ते झालं का"
+    ],
+    [
+     "a",
+     "काय झालं, आजीबाई?"
+    ]
+   ],
+   "criterion": "Asks what 'ते' refers to; does not invent a thing.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly asks what 'ते' refers to without inventing anything."
+   },
+   "keyword_hit": null,
+   "generic_turns": 0,
+   "turn_ms": [
+    4341,
+    6158
+   ],
+   "last_ms": 6158,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c28",
+   "cat": "stt_noisy",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझा नातू आरियन आज शालेत गेला"
+    ],
+    [
+     "a",
+     "आर्यन शाळेत गेला आहे; तो तिथून आल्यावर काय सांगतो याकडे लक्ष असेल तुमचं."
+    ],
+    [
+     "s",
+     "त्याला डबा दिला"
+    ],
+    [
+     "a",
+     "आर्यनला डबा दिलास छान; त्याला शाळेत आवडेल असा डबा दिला असेल."
+    ]
+   ],
+   "criterion": "Understands the grandson Aryan, school and the lunch box despite the spelling.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly acknowledges Aryan, his school, and the lunch box."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    2347,
+    1719
+   ],
+   "last_ms": 1719,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c29",
+   "cat": "stt_noisy",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी बागेत टुलस लावली"
+    ],
+    [
+     "a",
+     "बागेत तुळस लावलीत, खूप छान! तुळशीमुळे बागेची शोभा आणखी वाढेल."
+    ],
+    [
+     "s",
+     "तिला पानी घालते"
+    ],
+    [
+     "a",
+     "तिला पाणी दिलं की ती आणखी छान बहरेल. पाणी घालताना काही अडचण येते का?"
+    ]
+   ],
+   "criterion": "Understands tulsi and watering.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Understands tulsi and watering directly."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    4783,
+    5987
+   ],
+   "last_ms": 5987,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c30",
+   "cat": "stt_noisy",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "मेरा बेटा रमेश कल आएगा"
+    ],
+    [
+     "a",
+     "कल रमेश आने वाले हैं; तो आप उनके लिए क्या खास बनाने वाली हैं?"
+    ],
+    [
+     "s",
+     "उसके लिए खीर बनाउंगी"
+    ],
+    [
+     "a",
+     "रमेशसाठी खीर छान गोड बेत होईल; त्यांना ती नक्कीच आवडेल."
+    ]
+   ],
+   "criterion": "About making kheer for the son Ramesh.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Correctly responds about making kheer for Ramesh in Marathi."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    3192,
+    1304
+   ],
+   "last_ms": 1304,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c31",
+   "cat": "stt_noisy",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "अज स्वैंपाक केला भाजी आणी पोली"
+    ],
+    [
+     "a",
+     "आज भाजी आणि पोळी केलीत, छानच! जेवणात कोणती भाजी केली होती Aajiबाई?"
+    ],
+    [
+     "s",
+     "खुप चान जाला"
+    ],
+    [
+     "a",
+     "स्वयंपाक छान झाला असेल तर जेवणाची मजाच येते!"
+    ]
+   ],
+   "criterion": "Reacts to the meal she cooked turning out well.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Appropriately reacts to her statement that the meal turned out very well."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    3182,
+    4903
+   ],
+   "last_ms": 4903,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 2,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c32",
+   "cat": "stt_noisy",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I was at the markit with my daughter priya"
+    ],
+    [
+     "a",
+     "That sounds nice; what did you and Priya get at the market?"
+    ],
+    [
+     "s",
+     "we boght mangos"
+    ],
+    [
+     "a",
+     "Fresh mangoes must be so sweet; did you eat them right away?"
+    ]
+   ],
+   "criterion": "About the market trip, Priya or the mangoes.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly asks about the mangoes from the prior turn."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    4912,
+    1657
+   ],
+   "last_ms": 1657,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c33",
+   "cat": "code_mixed",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी WhatsApp वर नातीचा photo बघितला"
+    ],
+    [
+     "a",
+     "नातीचा फोटो बघायला मिळाला हे छानच झालं, ती फोटोत कशी दिसतेय?"
+    ],
+    [
+     "s",
+     "खूप cute आहे ती"
+    ],
+    [
+     "a",
+     "छानच! मग तुम्ही तिच्याशी बोलला का Aajiबाई?"
+    ]
+   ],
+   "criterion": "Reacts to the granddaughter's photo being cute.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Reacts to her cute granddaughter and asks if she spoke to her."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    2060,
+    3451
+   ],
+   "last_ms": 3451,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 1,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c34",
+   "cat": "code_mixed",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझ्या मुलाने मला नवीन mobile दिला"
+    ],
+    [
+     "a",
+     "नवीन मोबाईल मिळाला म्हणजे खूपच छान झालं! तुम्हाला तो मोबाईल वापरता येतोय ना?"
+    ],
+    [
+     "s",
+     "त्यात video call कसा करायचा"
+    ],
+    [
+     "a",
+     "माझ्याकडे कोणाचाही नंबर नोंदवलेला नाही. तुमच्या काळजीवाहकांना तो जोडायला सांगा."
+    ]
+   ],
+   "criterion": "Simple help or offer about video calling on the new mobile.",
+   "judge": {
+    "answered": 2,
+    "on_topic": true,
+    "used_prior_turn": false,
+    "invented": false,
+    "why": "Fails to help with video call, instead gives a confused response."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    1681,
+    1569
+   ],
+   "last_ms": 1569,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 1,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c35",
+   "cat": "code_mixed",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "आज मैंने YouTube पर भजन सुने"
+    ],
+    [
+     "a",
+     "हाँ, बताइए, मैं सुन रहा हूँ।"
+    ],
+    [
+     "s",
+     "बहुत शांति मिली"
+    ],
+    [
+     "a",
+     "भजन सुनकर मन को बहुत शांति मिलती है। कौन सा भजन सुना आपने आज?"
+    ]
+   ],
+   "criterion": "About the bhajans and the peace she felt.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Acknowledge bhajans, peace, and asks which one she heard."
+   },
+   "keyword_hit": true,
+   "generic_turns": 1,
+   "turn_ms": [
+    6802,
+    4792
+   ],
+   "last_ms": 4792,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 1,
+    "llm_checks": 1,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c36",
+   "cat": "code_mixed",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "उद्या माझ्या नातवाची exam आहे"
+    ],
+    [
+     "a",
+     "छान, उद्या तुमच्या नातवाचा पेपर आहे; त्याला परीक्षेसाठी खूप शुभेच्छा!"
+    ],
+    [
+     "s",
+     "तो खूप tension मध्ये आहे"
+    ],
+    [
+     "a",
+     "काळजी करू नका, तो नक्कीच छान पेपर लिहील."
+    ]
+   ],
+   "criterion": "Supportive reply about the grandson's exam tension; no medical advice.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly and supportively responds to the grandson's tension without medical advice."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    6721,
+    1909
+   ],
+   "last_ms": 1909,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c37",
+   "cat": "interruption",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "मी आज बाजारात गेले होते आणि"
+    ],
+    [
+     "a",
+     "बाजारामध्ये काय काय आणायला गेला होतात Aajiबाई?"
+    ],
+    [
+     "s",
+     "तिथे मला माझी जुनी शेजारीण भेटली"
+    ],
+    [
+     "a",
+     "जुनी शेजारीण भेटली म्हणजे खूप गप्पा झाल्या असतील; कोण होती ती?"
+    ]
+   ],
+   "criterion": "Replies to the combined thought: meeting the old neighbour at the market.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges meeting the old neighbour and asks who it was."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    4116,
+    4617
+   ],
+   "last_ms": 4617,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c38",
+   "cat": "interruption",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझा मुलगा म्हणाला की"
+    ],
+    [
+     "a",
+     "मुलगा काय म्हणाला आजीबाई?"
+    ],
+    [
+     "s",
+     "तो पुढच्या महिन्यात गावी येणार आहे"
+    ],
+    [
+     "a",
+     "त्यांची भेट खुप छान होईल!"
+    ]
+   ],
+   "criterion": "Replies about the son coming to the village next month.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges and warmly responds to the son coming next month."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    8906,
+    6938
+   ],
+   "last_ms": 6938,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 1,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c39",
+   "cat": "interruption",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "कल मैं मंदिर गई थी और"
+    ],
+    [
+     "a",
+     "हाँ, बताइए, मैं सुन रहा हूँ।"
+    ],
+    [
+     "s",
+     "वहाँ बहुत भीड़ थी"
+    ],
+    [
+     "a",
+     "मंदिर में बहुत भीड़ होगी फिर तो आप को दर्शन करने में दिक्कत हुई होगी ना?"
+    ]
+   ],
+   "criterion": "Replies about the crowd at the temple.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges and responds to her mention of the temple crowd."
+   },
+   "keyword_hit": true,
+   "generic_turns": 1,
+   "turn_ms": [
+    8192,
+    4502
+   ],
+   "last_ms": 4502,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c40",
+   "cat": "interruption",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I wanted to ask you about"
+    ],
+    [
+     "a",
+     "What did you want to ask me about, Aajiबाई?"
+    ],
+    [
+     "s",
+     "how old is the Taj Mahal"
+    ],
+    [
+     "a",
+     "I could not get that information right now."
+    ]
+   ],
+   "criterion": "Answers about the age of the Taj Mahal (built c.1632-1653), or says it will check; stays on the Taj Mahal.",
+   "judge": {
+    "answered": 1,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Failed to answer about the age of the Taj Mahal."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    3684,
+    8723
+   ],
+   "last_ms": 8723,
+   "relevance": {
+    "checked": 1,
+    "cheap_pass": 1,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c41",
+   "cat": "off_topic_bait",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज मी भाजी केली"
+    ],
+    [
+     "a",
+     "छान! आज कोणती भाजी केली तुम्ही?"
+    ],
+    [
+     "s",
+     "सहज केली"
+    ],
+    [
+     "a",
+     "काहीतरी छानच केली असणार!"
+    ]
+   ],
+   "criterion": "Stays on the vegetable dish she cooked; no health tips, no list, no new topic.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Appreciates her cooking without introducing new topics or health tips."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    2856,
+    2029
+   ],
+   "last_ms": 2029,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c42",
+   "cat": "off_topic_bait",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "आज थोडं ऊन होतं"
+    ],
+    [
+     "a",
+     "ना, आज दुपारी ऊन जरा जास्तच होतं; अंगाला चटका लागत होता."
+    ],
+    [
+     "s",
+     "मी बागेत बसले"
+    ],
+    [
+     "a",
+     "बागेत बसायला छान वाटतं; तिथली हवा कशी आहे?"
+    ]
+   ],
+   "criterion": "About the sunny day / sitting in the garden; no health or sun-safety advice list.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly responds to her sitting in the garden and asks about the weather."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    1672,
+    1526
+   ],
+   "last_ms": 1526,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c43",
+   "cat": "off_topic_bait",
+   "lang": "hi",
+   "dialogue": [
+    [
+     "s",
+     "आज मैंने दाल बनाई"
+    ],
+    [
+     "a",
+     "दाल बहुत अच्छी बनाई होगी, उसमें तड़का किसका दिया?"
+    ],
+    [
+     "s",
+     "थोड़ी तीखी हो गई"
+    ],
+    [
+     "a",
+     "तीखी हो गई!"
+    ]
+   ],
+   "criterion": "About the dal turning out spicy; no medical advice.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Acknowledge the spicy dal naturally."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    4870,
+    1365
+   ],
+   "last_ms": 1365,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c44",
+   "cat": "off_topic_bait",
+   "lang": "en",
+   "dialogue": [
+    [
+     "s",
+     "I walked to the park"
+    ],
+    [
+     "a",
+     "Walking to the park sounds like a very nice walk, Aajiबाई. Did you go there in the nice evening weather?"
+    ],
+    [
+     "s",
+     "it was nice"
+    ],
+    [
+     "a",
+     "I am so glad to hear that you had a nice time outside today."
+    ]
+   ],
+   "criterion": "About the walk / park; no exercise tips.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly acknowledges her walk without giving exercise tips."
+   },
+   "keyword_hit": false,
+   "generic_turns": 0,
+   "turn_ms": [
+    3335,
+    1511
+   ],
+   "last_ms": 1511,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  },
+  {
+   "id": "c45",
+   "cat": "off_topic_bait",
+   "lang": "mr",
+   "dialogue": [
+    [
+     "s",
+     "माझ्या नातवाला चित्रं काढायला आवडतं"
+    ],
+    [
+     "a",
+     "नातवाला चित्रं काढायला आवडतं, मग तो कोणते चित्र काढतो?"
+    ],
+    [
+     "s",
+     "त्याने आज मोर काढला"
+    ],
+    [
+     "a",
+     "मोराचं चित्र खूप सुंदर दिसत असेल."
+    ]
+   ],
+   "criterion": "About the grandson's peacock drawing.",
+   "judge": {
+    "answered": 5,
+    "on_topic": true,
+    "used_prior_turn": true,
+    "invented": false,
+    "why": "Directly and naturally appreciates the grandson's peacock drawing."
+   },
+   "keyword_hit": true,
+   "generic_turns": 0,
+   "turn_ms": [
+    1991,
+    1429
+   ],
+   "last_ms": 1429,
+   "relevance": {
+    "checked": 2,
+    "cheap_pass": 2,
+    "llm_checks": 0,
+    "llm_no": 0,
+    "retried": 0,
+    "clarified": 0
+   }
+  }
+ ]
+}

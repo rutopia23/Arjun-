@@ -58,3 +58,8 @@ _dead*.py
 
 Arjun_pytest_active/
 _phase1_*_tmp/
+
+# Local scratch
+.playwright-mcp/
+_*.py
+eval/results/turns_after.jsonl
