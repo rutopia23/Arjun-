@@ -1,6 +1,6 @@
 # Arjun: submission text (Great Indian AI Internship Challenge, Gnani AI)
 
-> Draft. Fill the [brackets], check every claim against STATUS.md ("verified live" vs "tests only") before submitting.
+> Draft. Fill the [brackets] (names, links only), and keep the "Verification status" section below honest.
 
 ## Project title
 Arjun: a voice companion for elders who live away from their families
@@ -34,14 +34,21 @@ with consent), medicines and alerts, Memory Book of stories she chose to share, 
 | **Timbre** (text-to-speech) | Arjun's voice: v3.0 with v2.5 fallback, reply language follows the speaker | `services/voice-agent/agent.py`, `voice.py` |
 | **Voice cloning** (Voice Clone Embeddings + Voice Cloned TTS `vachana-vc-v1`) | A family member's voice for friendly chat, consent-first, encrypted, deletable | `services/core-api/core_api/voices.py`, `services/voice-agent/clonedvoice.py`, `web/src/family/VoicesCard.tsx` |
 
-**Not Gnani, disclosed:** open conversation and family summaries use a hosted LLM ([Sarvam-105B / provider in
-`LLM_PROVIDER_NAME`]). Safety, medicines, reminders and times never depend on it. **Not used:** Evon (needs a GPU; not
+**Not Gnani, disclosed:** open conversation and family summaries use a hosted LLM (Sarvam-105B, hosted by Sarvam AI). Safety, medicines, reminders and times never depend on it. **Not used:** Evon (needs a GPU; not
 on the API platform), Warp (no public API).
 
 ## Privacy and consent
 Synthetic demo data only. No raw audio stored; voice-clone reference clips are never stored (only an encrypted
 embedding), consent is recorded and the voice can be deleted anytime; the elder screen always shows whose voice is
 speaking. Family sees summaries, never her words, and mood only with "share how she is doing".
+
+## Verification status (state this plainly; do not overclaim)
+- **Automated tests pass** (2026-11-15): core-api 367, reasoning 1479, voice-agent 445, scheduler 7, web 266, TypeScript and Ruff clean.
+- **Not yet confirmed on a live phone/voice session:** streaming-TTS latency changes, apps by voice, media-mode recovery,
+  emergency auto-calls (need Twilio; off by default), cloned-voice playback. Show only what was recorded working.
+- **Unreviewed by a native speaker:** the Marathi emergency/distress word lists and the bn/gu/kn/ml/pa/ta/te strings.
+- **Reported numbers are system results only**; no Prisma WER is published (Gnani EULA clause 16).
+- Arjun is an AI and says so; it gives no medical advice beyond one fixed self-care line and "ask your doctor".
 
 ## Team and contributions
 - [Rutuja Patole]: [product idea and UX, family dashboard and voice-cloning flow, demo film, LinkedIn/X campaign, testing]
