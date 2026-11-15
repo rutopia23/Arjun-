@@ -1,3 +1,6 @@
+# STATUS (2026-11-15, pre-submission check)
+- Verified today with the project `.venv`: core-api 367, reasoning 1479, voice-agent 445, scheduler 7, Vitest 266, `tsc --noEmit`, Ruff, web build and `eval/run_eval.py` (emergency recall 87/87 on the rules-only set, 0/12 harmless flagged; this set was written alongside the lexicon, so it says nothing about real speech). No live voice session was run. `main` fast-forwarded to `deploy-prep`.
+
 # Deploy prep Step 1b (2026-11-14)
 - Gnani's SSE stream already pushes each decoded chunk to LiveKit's audio emitter. The first-sentence prefetch then collected every decoded frame into a list and `say_reply` awaited the entire synthesis, delaying playback until the sentence ended. It now hands off frames through a bounded queue as they arrive, with cancellation propagated on interruption.
 - TTS requests log request start, first SSE audio chunk, first frame handed to playback, last chunk, and active concurrency; turn rows and the latency report include request-to-first-chunk/frame durations. A configurable decoded-audio prebuffer defaults to 150 ms. It can cover short chunk gaps but cannot prevent stutter if generation remains slower than playback; that effect and any start delay require a live v3.0 measurement.
