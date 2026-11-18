@@ -556,6 +556,11 @@ async def entrypoint(ctx: agents.JobContext) -> None:
     # The language the elder SCREEN is set to (labels, the empty-line prompt). It is NOT sent as `reply_language` any more
     # (2026-11-10): each turn is answered in the language she spoke in that turn (Hindi -> Hindi, next turn Marathi -> Marathi).
     ui_language: list[str | None] = [language_from_metadata(ctx.job.metadata)]
+    if not from_metadata and os.environ.get("ENV", "").lower() in {"prod", "production"}:
+        # cloud: a room with no user in its dispatch metadata would silently serve user 1's data
+        logger.warning("refusing a room without user_id metadata in production")
+        ctx.shutdown(reason="no user_id metadata")
+        return
     user_id = from_metadata or USER_ID
     use_sarvam = voiceprovider.provider() == "sarvam"  # TESTING switch; the default is the Gnani path below
     if use_sarvam:

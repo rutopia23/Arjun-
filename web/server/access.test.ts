@@ -330,3 +330,59 @@ describe("cookie format", () => {
     expect(verifyCookie(undefined, secret, NOW)).toBeNull();
   });
 });
+
+describe("account mode (ARJUN_AUTH=1)", () => {
+  const acct = () => createAccess({ code: "", apiKey: KEY, now: () => NOW, accounts: true });
+  const proxy = () => {
+    const h: Record<string, string> = {};
+    return {
+      h,
+      setHeader: (n: string, v: string) => void (h[n.toLowerCase()] = v),
+      removeHeader: (n: string) => void delete h[n.toLowerCase()],
+    };
+  };
+
+  it("never injects the API key and forwards only core-api's own cookies", () => {
+    const a = acct();
+    const req = viaTunnel({
+      url: "/core/users/2/day",
+      cookie: "arjun_device=dev123; arjun_access=elder.1.x; other=1; arjun_session=ses456",
+      extra: { "x-api-key": "stolen" },
+    });
+    expect(a.decideCore(req).ok).toBe(true);
+    const p = proxy();
+    a.onProxyReq(p, req);
+    expect(p.h["x-api-key"]).toBeUndefined();
+    expect(p.h["cookie"]).toBe("arjun_session=ses456; arjun_device=dev123");
+  });
+
+  it("drops the cookie header when no core-api cookie is present", () => {
+    const a = acct();
+    const req = viaTunnel({ url: "/core/users/2/day", cookie: "x=1" });
+    const p = proxy();
+    p.setHeader("cookie", "x=1");
+    a.onProxyReq(p, req);
+    expect(p.h["cookie"]).toBeUndefined();
+    expect(p.h["x-api-key"]).toBeUndefined();
+  });
+
+  it("refuses a key in a WebSocket URL", () => {
+    expect(acct().decideCore(viaTunnel({ url: "/core/ws/users/2/feed?key=abc" })).ok).toBe(false);
+  });
+
+  it("serves pages without an access link", () => {
+    const a = acct();
+    let nexted = false;
+    a.middleware(viaTunnel({ url: "/elder-screen" }), fakeRes() as unknown as ServerResponse, () => void (nexted = true));
+    expect(nexted).toBe(true);
+  });
+
+  it("legacy mode still injects the key for a valid link", () => {
+    const a = access();
+    const cookie = `${COOKIE_NAME}=${a.setCookieHeader("family", {}).split(";")[0]!.split("=").slice(1).join("=")}`;
+    const req = viaTunnel({ url: "/core/users/1/reminders", cookie });
+    const p = proxy();
+    a.onProxyReq(p, req);
+    expect(p.h["x-api-key"]).toBe(KEY);
+  });
+});

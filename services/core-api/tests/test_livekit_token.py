@@ -99,3 +99,17 @@ def test_a_token_without_a_language_is_unchanged_and_a_bad_language_is_refused(c
     assert meta == {"user_id": uid}
     for bad in ("xx", "MR", "hindi", "<script>", ""):
         assert client.post("/livekit/token", json={"user_id": uid, "language": bad}).status_code == 422, bad
+
+
+def test_daily_voice_cap_stops_the_third_session(client, uid, lk_env, monkeypatch):
+    monkeypatch.setenv("ARJUN_DAILY_VOICE_SESSIONS", "2")
+    for _ in range(2):
+        assert client.post("/livekit/token", json={"user_id": uid}).status_code == 200
+    r = client.post("/livekit/token", json={"user_id": uid})
+    assert r.status_code == 429 and "Retry-After" in r.headers
+
+
+def test_no_cap_by_default(client, uid, lk_env, monkeypatch):
+    monkeypatch.delenv("ARJUN_DAILY_VOICE_SESSIONS", raising=False)
+    for _ in range(4):
+        assert client.post("/livekit/token", json={"user_id": uid}).status_code == 200

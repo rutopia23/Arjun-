@@ -42,6 +42,11 @@ export const ACCOUNT_ROUTES: Route[] = [
   route("GET", `/parents/${ID}`),
   route("PATCH", `/parents/${ID}`),
   route("DELETE", `/parents/${ID}`),
+  route("POST", `/parents/${ID}/(?:invite|pairing)`),
+  route("GET", `/parents/${ID}/devices`),
+  route("DELETE", `/parents/${ID}/devices/${ID}`),
+  route("POST", "/auth/accept-invite"),
+  route("POST", "/devices/pair"),
 ];
 
 /** What the elder page calls (web/src/elder/*, voice/*): read her day, answer a dose, ack a delivery, join voice. */
@@ -166,6 +171,10 @@ export interface AccessOptions {
   apiKey: string;
   /** seconds since epoch (tests) */
   now?: () => number;
+  /** ARJUN_AUTH=1 (cloud): per-user accounts. Every core request is forwarded with the browser's own
+   * arjun_session / arjun_device cookie and NEVER with the API key, so core-api enforces who may see which elder.
+   * The shared access code is then not used. */
+  accounts?: boolean;
 }
 
 export type Verdict =
@@ -215,6 +224,7 @@ export function createAccess(opts: AccessOptions) {
     }
     if (routeAllowed(PUBLIC_ROUTES, method, path)) return { ok: true, role: "public" };
     if (routeAllowed(ACCOUNT_ROUTES, method, path)) return { ok: true, role: "public" }; // core-api checks the session
+    if (opts.accounts) return { ok: true, role: "public" }; // core-api checks the session / device cookie
     if (isLocalRequest(req)) return { ok: true, role: "local" };
     const role = roleOf(req.headers);
     if (role === null) return { ok: false, status: 401, detail: "access link required" };
@@ -270,6 +280,7 @@ export function createAccess(opts: AccessOptions) {
     const url = req.url ?? "/";
     const u = new URL(url, "http://local");
 
+    if (opts.accounts && u.pathname !== "/auth") return next(); // pages are public; core-api guards the data
     if (u.pathname === "/auth") {
       const role: Role = u.searchParams.get("view") === "family" ? "family" : "elder";
       return authenticate(req, res, u.searchParams.get("k"), role, u.searchParams.get("to") ?? "/");
@@ -298,10 +309,11 @@ export function createAccess(opts: AccessOptions) {
   /** http-proxy `proxyReq`: add the API key only to a request that passes, and never forward the cookie. */
   function onProxyReq(proxyReq: { setHeader(n: string, v: string): void; removeHeader(n: string): void }, req: IncomingMessage): void {
     proxyReq.removeHeader("x-api-key"); // whatever the browser sent is not ours
-    if (isAccountRoute(req)) {
-      // keep ONLY core-api's own session cookie; never add the key: the account session must stand on its own
-      const session = /(?:^|;\s*)(arjun_session=[^;]+)/.exec(String(req.headers.cookie ?? ""));
-      if (session?.[1]) proxyReq.setHeader("cookie", session[1]);
+    if (opts.accounts || isAccountRoute(req)) {
+      // keep ONLY core-api's own cookies; never add the key: the account / device must stand on its own
+      const cookies = parseCookies(String(req.headers.cookie ?? ""));
+      const keep = ["arjun_session", "arjun_device"].filter((n) => cookies[n]).map((n) => `${n}=${cookies[n]}`);
+      if (keep.length) proxyReq.setHeader("cookie", keep.join("; "));
       else proxyReq.removeHeader("cookie");
       return;
     }

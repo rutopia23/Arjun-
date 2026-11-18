@@ -71,3 +71,18 @@ Then open the elder link on a phone, tap the button, and speak once. Check the v
 - **Access gate rate-limit** is per function instance, and the shell page itself is public (only the API is gated).
 - **SQLite on a volume** = one core-api replica, no zero-downtime deploys. Move to Postgres later.
 - **Cold-start latency and cost per call** on Railway are unmeasured. Prisma and Timbre are called from the worker.
+
+
+## Multi-user mode (each family has its own login and its own elder link)
+
+Set on core-api: `ARJUN_AUTH=1`, `ARJUN_SIGNUP_CODE=<secret to give testers>` (never `ARJUN_ALLOW_OPEN_SIGNUP` in prod),
+`ARJUN_DAILY_VOICE_SESSIONS=20` (cost cap), `BASE_URL=<your Vercel URL>`, `CORS_ALLOW_ORIGINS=<your Vercel URL>`.
+Set on Vercel: `ARJUN_AUTH=1`, `CORE_API_URL`. `CORE_API_KEY` is then only for the voice agent and scheduler, not the browser path.
+Set on voice-agent: `ENV=prod` (rooms without a user id are refused).
+
+Flow: family opens the site -> sign up (code) -> add elder -> "Create elder link" -> opens it on her phone -> her Arjun.
+
+Smoke test (must pass before real users): (1) two accounts A and B; (2) A's elder phone cannot read B's elder
+(`GET /core/users/<B's id>/day` -> 403/404); (3) a browser with no login gets 401 on `/core/users/1/day`; (4) a
+revoked phone stops working; (5) the third voice session over the cap answers 429.
+Real elders' data: get consent first; CLAUDE.md says demo data is synthetic only.

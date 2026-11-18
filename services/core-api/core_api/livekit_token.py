@@ -30,6 +30,33 @@ _rooms: dict[int, str] = {}
 _rooms_lock = threading.Lock()
 
 
+_sessions: dict[tuple[int, str], int] = {}
+
+
+def _daily_cap() -> int:
+    """ARJUN_DAILY_VOICE_SESSIONS: voice sessions one elder may start per day (0 = no cap). Caps Gnani/LLM cost."""
+    try:
+        return max(0, int(os.environ.get("ARJUN_DAILY_VOICE_SESSIONS", "0")))
+    except ValueError:
+        return 0
+
+
+def _count_session(user_id: int) -> bool:
+    """True when this session is within today's cap (in memory: resets on restart, which only ever errs generous)."""
+    cap = _daily_cap()
+    if cap == 0:
+        return True
+    today = datetime.now(timezone.utc).strftime("%Y%m%d")
+    with _rooms_lock:
+        for k in [k for k in _sessions if k[1] != today]:
+            del _sessions[k]
+        used = _sessions.get((user_id, today), 0)
+        if used >= cap:
+            return False
+        _sessions[(user_id, today)] = used + 1
+        return True
+
+
 def remember_room(user_id: int, room: str) -> None:
     with _rooms_lock:
         _rooms[user_id] = room
@@ -43,6 +70,7 @@ def active_room(user_id: int) -> str | None:
 def reset_rooms_for_tests() -> None:
     with _rooms_lock:
         _rooms.clear()
+        _sessions.clear()
 
 
 class TokenIn(BaseModel):
@@ -77,6 +105,8 @@ def livekit_token(
     user = db.get(m.User, body.user_id)
     if user is None:
         raise HTTPException(404, "user not found")
+    if not _count_session(user.id):
+        raise HTTPException(429, "daily voice limit reached; try again tomorrow", headers={"Retry-After": "3600"})
     agent_name = os.environ.get("ARJUN_AGENT_NAME") or "arjun"
     room = f"elder-{user.id}-{datetime.now(timezone.utc):%Y%m%d%H%M%S}-{secrets.token_hex(3)}"
     identity = f"elder-{user.id}"

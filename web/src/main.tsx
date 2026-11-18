@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import { AccountGate } from "./family/AccountGate";
 import { Dashboard } from "./family/Dashboard";
 import { JoinCall } from "./family/JoinCall";
+import { PairGate } from "./elder/PairGate";
+import { PairCard } from "./family/PairCard";
 import { ElderApp } from "./elder/ElderApp";
 import { ChatDemo } from "./preview/ChatDemo";
 import { UiGallery } from "./preview/UiGallery";
@@ -73,9 +75,14 @@ function App() {
 
   return (
     <>
-      {view === "elder" ? <ElderApp userId={userId} forceEvening={evening} showRecorder={chatRoute} landOnHome={elderScreenRoute} /> : (
+      {view === "elder" ? (
+        <PairGate onUser={changeUser}>
+          <ElderApp userId={userId} forceEvening={evening} showRecorder={chatRoute} landOnHome={elderScreenRoute} />
+        </PairGate>
+      ) : (
         <AccountGate userId={userId} onUser={changeUser}>
           <Dashboard userId={userId} onUser={changeUser} />
+          <PairCard userId={userId} />
         </AccountGate>
       )}
       {!chatRoute && <nav

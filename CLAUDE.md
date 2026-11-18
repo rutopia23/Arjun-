@@ -159,9 +159,11 @@ nginx replicas, S3 cache, telephony (except the 2026-11-08 emergency calls), SMS
 **Family login + multiple elders (team notes 2026-11-10):** with `ARJUN_AUTH=1` the dashboard opens on a login /
 sign-up page (`family/AccountGate.tsx`); an account sees only its own elders, can add more, and log out. The first
 account ever created owns the elders that already exist. The dev proxy passes ONLY core-api's `arjun_session` cookie
-to `/auth/*` and `/parents*` and never adds the key there. LIMITATION: the per-elder dashboard routes still go through
-the key-injecting dev proxy, so the elder picker is the boundary in the browser, not the API; production needs the
-real proxy (T14) to stop injecting the key for family sessions.
+to `/auth/*` and `/parents*` and never adds the key there. **Cloud (2026-11-18):** with `ARJUN_AUTH=1` the web proxy (`web/server/access.ts`, `accounts` mode; also the Vercel functions) never injects
+`CORE_API_KEY` and forwards only the `arjun_session` / `arjun_device` cookies, so core-api itself enforces which account or
+elder device may read which elder (UNVERIFIED end to end until the smoke test in docs/DEPLOY_CLOUD.md). Each elder phone is paired
+by a one-time 15-minute link (`/?pair=<code>`, family card "Create elder link"). In `ENV=prod` the voice agent refuses rooms with no
+`user_id` metadata; `ARJUN_DAILY_VOICE_SESSIONS` caps sessions per elder per day (in memory).
 
 ## Open questions (unresolved; do not assume answers)
 1. Does Prisma support Marathi in *streaming*? If not, push-to-talk (T5).
