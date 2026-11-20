@@ -24,17 +24,11 @@ log = logging.getLogger("arjun.bridge")
 _client: httpx.Client | None = None
 
 
-def internal_headers() -> dict[str, str]:
-    """The shared key reasoning requires when ARJUN_INTERNAL_KEY is set (never logged)."""
-    key = os.environ.get("ARJUN_INTERNAL_KEY", "")
-    return {"x-arjun-internal": key} if key else {}
-
-
 def _shared_client() -> httpx.Client:
     """One pooled client for the worker process (thread-safe for concurrent requests)."""
     global _client
     if _client is None:
-        _client = httpx.Client(timeout=REASONING_TIMEOUT_S, headers=internal_headers())
+        _client = httpx.Client(timeout=REASONING_TIMEOUT_S)
     return _client
 
 

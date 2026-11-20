@@ -562,15 +562,3 @@ class EmergencyCall(Base):
     status: Mapped[str] = mapped_column(String(20))
     detail: Mapped[str] = mapped_column(String(200), default="")
     at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
-
-
-class VoiceSessionCount(Base):
-    """Voice sessions an elder started on one UTC day (ARJUN_DAILY_VOICE_SESSIONS). In the database, not memory, so a redeploy
-    cannot reset the cost cap."""
-
-    __tablename__ = "voice_session_counts"
-    __table_args__ = (UniqueConstraint("user_id", "day", name="uq_voice_session_day"),)
-    id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(Integer, index=True)
-    day: Mapped[str] = mapped_column(String(8))  # YYYYMMDD, UTC
-    count: Mapped[int] = mapped_column(Integer, default=0)

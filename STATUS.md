@@ -1,11 +1,3 @@
-# Review fixes (2026-11-20)
-- **Reasoning auth:** with `ARJUN_INTERNAL_KEY` set, every reasoning HTTP route except `/health` needs the `x-arjun-internal` header (the WebSocket already checked it). voice-agent and scheduler send it. `ENV=prod` now refuses to start reasoning, voice-agent and scheduler without it (reasoning: 16+ chars). **Deploy order:** set the same value on all three Railway services BEFORE deploying this, or they will exit at startup.
-- **Voice cap in the database:** `ARJUN_DAILY_VOICE_SESSIONS` is counted in table `voice_session_counts` (created by `create_all`), so a redeploy no longer resets it. Still 0 (no cap) unless set; set it in prod.
-- **Config drift:** `.env.example` now `LLM_MAX_TOKENS=250` (matches code); CLAUDE.md note updated. Added `ARJUN_INTERNAL_KEY` and `ARJUN_DAILY_VOICE_SESSIONS` to `.env.example`.
-- **CI:** `.github/workflows/ci.yml` (ruff, four pytest suites, tsc, vitest). UNVERIFIED: it has not run on GitHub yet.
-- **Live isolation smoke test:** `scripts/smoke_isolation.py <web-url> <signup-code>`. UNVERIFIED: written, not yet run against the live app (its request bodies follow the API as read, may need adjusting).
-- Verified in the sandbox today: core-api 378 passed, reasoning 1471 passed / 1 skipped, voice-agent 446 passed, scheduler 7 passed, `ruff check .` clean. `tsc` / Vitest not re-run (no web change). Not done: splitting `turn.py`/`evon.py`/`agent.py`; real-voice endpointing tuning (needs recorded clips).
-
 # Documentation rewrite (2026-11-15)
 - Added `docs/README.md` (index + glossary), `ARCHITECTURE.md`, `SERVICES.md`, `API.md`, `DATA_MODEL.md`, `CONFIGURATION.md`, `SAFETY_AND_PRIVACY.md`, `DEVELOPMENT.md`, `OPERATIONS.md`; the root README is now a start-here guide and the old README moved to `docs/DETAILS.md`. Written from reading the code; no test or live run was part of this change, so the counts and "verified" statements are copied from the entries below, not re-measured.
 - Found while documenting: the compose file does not run voice-agent; `.env.example` shows `LLM_MAX_TOKENS=80` while the code default is 250; a local voice worker killed by a LiveKit network drop (FFI panic) is not restarted automatically.

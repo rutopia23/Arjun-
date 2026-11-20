@@ -1,10 +1,7 @@
-import hmac
 import logging
-import os
 from typing import Any, Literal
 
-from fastapi import BackgroundTasks, FastAPI, HTTPException, Request, WebSocket
-from fastapi.responses import JSONResponse
+from fastapi import BackgroundTasks, FastAPI, HTTPException, WebSocket
 from pydantic import BaseModel, Field
 
 from . import config
@@ -37,18 +34,6 @@ def configure_logging() -> None:
 configure_logging()
 check_prod_env()  # ENV=prod only
 app = FastAPI(title="Arjun reasoning")
-
-
-@app.middleware("http")
-async def _require_internal_key(request: Request, call_next):  # type: ignore[no-untyped-def]
-    """ARJUN_INTERNAL_KEY set -> every HTTP route except /health needs the x-arjun-internal header (constant-time compare).
-    Unset = open, as before (local dev). The WebSocket /turn/stream checks the same key itself (stream.py)."""
-    want = os.environ.get("ARJUN_INTERNAL_KEY", "")
-    if want and request.url.path != "/health":
-        got = request.headers.get("x-arjun-internal", "")
-        if not hmac.compare_digest(got.encode(), want.encode()):
-            return JSONResponse({"detail": "forbidden"}, status_code=403)
-    return await call_next(request)
 
 _engine: TurnEngine | None = None
 _tracker: Tracker | None = None
