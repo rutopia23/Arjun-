@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { access, coreUrl } from "./_gate";
+import { access, coreUrl } from "./_gate.js";
 
 /** /core/* -> core-api. The access check and header rules are exactly server/access.ts (key only after a valid link
  * cookie; account routes carry only core-api's own session cookie, never the key). No WebSocket here: Vercel
