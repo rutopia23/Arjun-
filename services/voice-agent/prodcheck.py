@@ -2,7 +2,7 @@
 import os
 import sys
 
-REQUIRED = ("CORE_API_URL", "CORE_API_KEY", "REASONING_URL")
+REQUIRED = ("CORE_API_URL", "CORE_API_KEY", "REASONING_URL", "ARJUN_INTERNAL_KEY")
 
 
 def check_prod_env() -> None:

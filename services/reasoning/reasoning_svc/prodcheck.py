@@ -9,5 +9,7 @@ def check_prod_env() -> None:
     bad = [f"{n} is not set" for n in ("CORE_API_URL", "CORE_API_KEY") if not os.environ.get(n, "").strip()]
     if len(os.environ.get("CORE_API_KEY", "")) < 32 and os.environ.get("CORE_API_KEY"):
         bad.append("CORE_API_KEY is shorter than 32 characters")
+    if len(os.environ.get("ARJUN_INTERNAL_KEY", "")) < 16:
+        bad.append("ARJUN_INTERNAL_KEY is not set or shorter than 16 characters")
     if bad:
         sys.exit("reasoning: refusing to start with ENV=prod: " + "; ".join(bad))

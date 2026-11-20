@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from livekit.api import AccessToken, RoomAgentDispatch, RoomConfiguration, VideoGrants
 from pydantic import BaseModel, Field
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from . import models as m
@@ -30,9 +31,6 @@ _rooms: dict[int, str] = {}
 _rooms_lock = threading.Lock()
 
 
-_sessions: dict[tuple[int, str], int] = {}
-
-
 def _daily_cap() -> int:
     """ARJUN_DAILY_VOICE_SESSIONS: voice sessions one elder may start per day (0 = no cap). Caps Gnani/LLM cost."""
     try:
@@ -41,20 +39,28 @@ def _daily_cap() -> int:
         return 0
 
 
-def _count_session(user_id: int) -> bool:
-    """True when this session is within today's cap (in memory: resets on restart, which only ever errs generous)."""
+def _count_session(db: Session, user_id: int) -> bool:
+    """True when this session is within today's (UTC) cap. Stored in the database, so a restart or redeploy cannot reset it."""
     cap = _daily_cap()
     if cap == 0:
         return True
     today = datetime.now(timezone.utc).strftime("%Y%m%d")
-    with _rooms_lock:
-        for k in [k for k in _sessions if k[1] != today]:
-            del _sessions[k]
-        used = _sessions.get((user_id, today), 0)
-        if used >= cap:
-            return False
-        _sessions[(user_id, today)] = used + 1
-        return True
+    # atomic increment-if-below-cap: two simultaneous taps cannot both slip past the cap
+    row = db.query(m.VoiceSessionCount).filter_by(user_id=user_id, day=today).first()
+    if row is None:
+        db.add(m.VoiceSessionCount(user_id=user_id, day=today, count=1))
+        try:
+            db.commit()
+            return True
+        except IntegrityError:  # a concurrent request created it first
+            db.rollback()
+    updated = (
+        db.query(m.VoiceSessionCount)
+        .filter(m.VoiceSessionCount.user_id == user_id, m.VoiceSessionCount.day == today, m.VoiceSessionCount.count < cap)
+        .update({m.VoiceSessionCount.count: m.VoiceSessionCount.count + 1}, synchronize_session=False)
+    )
+    db.commit()
+    return updated == 1
 
 
 def remember_room(user_id: int, room: str) -> None:
@@ -70,7 +76,6 @@ def active_room(user_id: int) -> str | None:
 def reset_rooms_for_tests() -> None:
     with _rooms_lock:
         _rooms.clear()
-        _sessions.clear()
 
 
 class TokenIn(BaseModel):
@@ -105,7 +110,7 @@ def livekit_token(
     user = db.get(m.User, body.user_id)
     if user is None:
         raise HTTPException(404, "user not found")
-    if not _count_session(user.id):
+    if not _count_session(db, user.id):
         raise HTTPException(429, "daily voice limit reached; try again tomorrow", headers={"Retry-After": "3600"})
     agent_name = os.environ.get("ARJUN_AGENT_NAME") or "arjun"
     room = f"elder-{user.id}-{datetime.now(timezone.utc):%Y%m%d%H%M%S}-{secrets.token_hex(3)}"

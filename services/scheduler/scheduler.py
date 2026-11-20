@@ -104,11 +104,14 @@ def tick(http: httpx.Client, today: str) -> list[dict[str, object]]:
 
 def main() -> None:
     if os.environ.get("ENV", "").strip().lower() == "prod":  # refuse a half-configured deployment (names only)
-        bad = [n for n in ("CORE_API_URL", "CORE_API_KEY", "REASONING_URL") if not os.environ.get(n, "").strip()]
+        bad = [n for n in ("CORE_API_URL", "CORE_API_KEY", "REASONING_URL", "ARJUN_INTERNAL_KEY") if not os.environ.get(n, "").strip()]
         if bad:
             raise SystemExit("scheduler: refusing to start with ENV=prod, not set: " + ", ".join(bad))
     logging.basicConfig(level=logging.INFO)
     headers = {"X-API-Key": KEY} if KEY else {}
+    internal = os.environ.get("ARJUN_INTERNAL_KEY", "")
+    if internal:
+        headers["x-arjun-internal"] = internal
     with httpx.Client(headers=headers, timeout=10.0) as http:
         while True:
             try:

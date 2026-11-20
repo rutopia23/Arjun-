@@ -113,3 +113,13 @@ def test_no_cap_by_default(client, uid, lk_env, monkeypatch):
     monkeypatch.delenv("ARJUN_DAILY_VOICE_SESSIONS", raising=False)
     for _ in range(4):
         assert client.post("/livekit/token", json={"user_id": uid}).status_code == 200
+
+
+def test_daily_cap_survives_a_restart(client, uid, lk_env, monkeypatch):
+    """The count lives in the database: forgetting the in-memory room table (what a restart does) must not reset it."""
+    from core_api import livekit_token
+
+    monkeypatch.setenv("ARJUN_DAILY_VOICE_SESSIONS", "1")
+    assert client.post("/livekit/token", json={"user_id": uid}).status_code == 200
+    livekit_token.reset_rooms_for_tests()  # same effect on the cap as a process restart
+    assert client.post("/livekit/token", json={"user_id": uid}).status_code == 429
