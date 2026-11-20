@@ -8,7 +8,11 @@ import { createAccess } from "./server/access";
 // ONLY for a request that carries a valid access cookie (see server/access.ts); this laptop is always trusted.
 const coreTarget = process.env.CORE_API_URL ?? "http://127.0.0.1:8000";
 const apiKey = process.env.CORE_API_KEY ?? "";
-const access = createAccess({ code: (process.env.ARJUN_ACCESS_CODE ?? "").trim(), apiKey });
+const access = createAccess({
+  code: (process.env.ARJUN_ACCESS_CODE ?? "").trim(),
+  apiKey,
+  accounts: process.env.ARJUN_AUTH === "1",
+});
 
 export default defineConfig({
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },

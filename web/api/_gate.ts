@@ -6,4 +6,6 @@ export const coreUrl = (process.env.CORE_API_URL ?? "").replace(/\/+$/, "");
 export const access = createAccess({
   code: (process.env.ARJUN_ACCESS_CODE ?? "").trim(),
   apiKey: process.env.CORE_API_KEY ?? "",
+  // ARJUN_AUTH=1: per-user accounts; core-api checks the session / device cookie, the key is never injected
+  accounts: process.env.ARJUN_AUTH === "1",
 });

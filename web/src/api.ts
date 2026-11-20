@@ -409,6 +409,14 @@ export const api = {
   signup: (name: string, email: string, password: string, signup_code: string) =>
     core<{ id: number }>("/auth/signup", { ...post({ name, email, password, signup_code }), credentials: "same-origin" }),
   logout: () => core<void>("/auth/logout", { method: "POST", credentials: "same-origin" }),
+  pairingLink: (id: number) =>
+    core<{ code: string; url: string; expires_at: string }>(`/parents/${id}/pairing`, { method: "POST", credentials: "same-origin" }),
+  pairedDevices: (id: number) =>
+    core<{ id: number; label: string; last_seen: string | null; revoked: boolean }[]>(`/parents/${id}/devices`, { credentials: "same-origin" }),
+  revokeDevice: (id: number, deviceId: number) =>
+    core<void>(`/parents/${id}/devices/${deviceId}`, { method: "DELETE", credentials: "same-origin" }),
+  pairDevice: (code: string, label: string) =>
+    core<{ user_id: number }>("/devices/pair", { ...post({ code, label }), credentials: "same-origin" }),
   addElder: (name: string, language: string) =>
     core<{ id: number }>("/parents", { ...post({ name, language }), credentials: "same-origin" }),
   createUser: (name: string) =>
